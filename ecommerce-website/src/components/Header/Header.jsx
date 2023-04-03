@@ -1,9 +1,9 @@
-import React from 'react';
-import { Navbar, Nav, Container } from 'react-bootstrap';
+import React from "react";
+import { Navbar, Nav, Container } from "react-bootstrap";
 
-const Header = () => {
+const Header = ({ handleCartOpen }) => {
   return (
-    <Navbar bg="Dark" expand="lg" className="justify-content-between">
+    <Navbar bg="light" expand="lg" className="justify-content-between">
       <Container>
         <Navbar.Brand href="#home">Our Ecommerce Site</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -15,7 +15,7 @@ const Header = () => {
           </Nav>
         </Navbar.Collapse>
         <Nav>
-          <Nav.Link href="#cart">Cart</Nav.Link>
+          <Nav.Link onClick={handleCartOpen}>My Cart</Nav.Link>
         </Nav>
       </Container>
     </Navbar>

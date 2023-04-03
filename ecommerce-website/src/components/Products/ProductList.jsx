@@ -25,9 +25,6 @@ const items = [
     }
 ]
 
-
-
-
 const ProductList = () => {
     return (
         <Container style={{ marginTop: "20px" }}>
