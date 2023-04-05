@@ -31,15 +31,21 @@ function CartContainer(props) {
           <h4 className="text-center mb-4">Items In Your Cart</h4>
           {orderList.length > 0 ? (
             <OrderList
-              orders={props.orders}
-              onRemove={props.onRemove}
-              onUpdateQuantity={props.onUpdateQuantity}
+              orders={orderList}
             />
           ) : (
             <p className="text-center">Your cart is empty.</p>
           )}
         </Col>
       </Row>
+      <hr />
+      <div className="d-flex justify-content-between">
+        <h5>Total Amount:</h5>
+        <h5>Rs. {totalAmount} </h5>
+      </div>
+      <Button variant="primary" block>
+        Place Order
+      </Button>
 
     </Container>
   );

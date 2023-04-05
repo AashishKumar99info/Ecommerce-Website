@@ -8,8 +8,8 @@ const OrderItem = (props) => {
   const orderlist = [...ctx.orderList]
 
   const updateQuantity = (e) => {
-    orderlist.forEach((item,i) => {
-      if(item.id === props.id){
+    orderlist.forEach((item, i) => {
+      if (item.id === props.id) {
         item.quantity = parseInt(e.target.value)
       }
     })
@@ -17,14 +17,14 @@ const OrderItem = (props) => {
   }
 
   const removeOrder = () => {
-    orderlist.forEach((item,i) => {
-      if(item.id === props.id){
-        orderlist.splice(i,1)
+    orderlist.forEach((item, i) => {
+      if (item.id === props.id) {
+        orderlist.splice(i, 1)
       }
     })
     ctx.setOrderList(orderlist)
   }
-  const totalprice = props.quantity*props.price
+  const totalprice = props.quantity * props.price
 
   return (
     <Row className="my-3">
@@ -33,7 +33,7 @@ const OrderItem = (props) => {
       </Col>
       <Col xs={9}>
         <h5>{props.title}</h5>
-        <p className="my-1">${props.price} X ${props.quantity}=Rs.{totalprice}</p>
+        <p className="my-1">{`${props.price} X ${props.quantity}=Rs.${totalprice}`}</p>
         <div className="d-flex align-items-center my-2">
           <input
             type="number"

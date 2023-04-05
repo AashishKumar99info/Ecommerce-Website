@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Navbar, Nav, Container, Button } from "react-bootstrap";
 import CartContext from "../Context/CartContext";
 
-const Header = ({ handleCartOpen }) => {
+const Header = () => {
   
   const ctx = useContext(CartContext);
   const orderlist = ctx.orderList;

@@ -6,7 +6,7 @@ const OrderList = (props) => {
             key={order.id}
             id={order.id}
             title={order.title}
-            imageSrc={order.imageUrl}
+            imageSrc={order.imageSrc}
             price={order.price}
             quantity={order.quantity}
         />
