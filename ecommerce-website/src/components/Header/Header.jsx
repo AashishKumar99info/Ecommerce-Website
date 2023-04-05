@@ -1,7 +1,15 @@
-import React from "react";
-import { Navbar, Nav, Container } from "react-bootstrap";
+import React, { useContext } from "react";
+import { Navbar, Nav, Container, Button } from "react-bootstrap";
+import CartContext from "../Context/CartContext";
 
 const Header = ({ handleCartOpen }) => {
+  
+  const ctx = useContext(CartContext);
+  const orderlist = ctx.orderList;
+  let cartItemCount = 0;
+  orderlist.forEach(item => {
+    cartItemCount += item.quantity
+  })
   return (
     <Navbar bg="light" expand="lg" className="justify-content-between">
       <Container>
@@ -15,7 +23,7 @@ const Header = ({ handleCartOpen }) => {
           </Nav>
         </Navbar.Collapse>
         <Nav>
-          <Nav.Link onClick={handleCartOpen}>My Cart</Nav.Link>
+          <Button variant="outline-warning" onClick={()=>ctx.setCartOpen(true)}>{`My Cart ${cartItemCount}`}</Button>
         </Nav>
       </Container>
     </Navbar>

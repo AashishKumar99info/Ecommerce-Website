@@ -1,7 +1,16 @@
 import { Container, Row, Col , Button } from 'react-bootstrap';
 import OrderList from './OrderList';
+import { useContext } from 'react';
+import CartContext from '../Context/CartContext';
 
 function CartContainer(props) {
+
+  const ctx = useContext(CartContext)
+  const orderList = ctx.orderList;
+  let totalAmount = 0;
+  orderList.forEach((item) => {
+    totalAmount += item.price*item.quantity;
+  })
   return (
     <Container
       fluid
@@ -11,14 +20,16 @@ function CartContainer(props) {
     <Button
         variant="outline-danger"
         className="float-end"
-        onClick={props.onClose}
+        onClick={() => {
+          ctx.setCartOpen(false)
+        }}
       >
         Close
       </Button>
       <Row>
         <Col xs={12}>
           <h4 className="text-center mb-4">Items In Your Cart</h4>
-          {props.orders.length > 0 ? (
+          {orderList.length > 0 ? (
             <OrderList
               orders={props.orders}
               onRemove={props.onRemove}
@@ -29,6 +40,7 @@ function CartContainer(props) {
           )}
         </Col>
       </Row>
+
     </Container>
   );
 }
