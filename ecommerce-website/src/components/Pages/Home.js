@@ -9,7 +9,7 @@ const HomePage = () => {
       <Header />
       <header
         style={{
-          textAlign: "center",
+          textAlign: "center", 
           backgroundColor: "#bf00ff",
           color: "whitesmoke",
           borderRadius: "10px",
