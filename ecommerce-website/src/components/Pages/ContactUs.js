@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Form, Button, Card,} from 'react-bootstrap';
-import Header from '../Header/Header';
 async function postDataToFirebase(data) {
     const response = await fetch('https://visitor-users-data-default-rtdb.firebaseio.com/VisitorUsersData.json', {
       method: 'POST',
@@ -28,8 +27,6 @@ function ContactUs() {
   }
 
   return (
-    <div>
-    <Header />
     <div className="container mt-5">
       <Card className="p-4">
         <h1>Contact Us</h1>
@@ -74,7 +71,6 @@ function ContactUs() {
           </div>
         </Form>
       </Card>
-    </div>
     </div>
   );
 }
