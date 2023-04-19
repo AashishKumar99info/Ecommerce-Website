@@ -17,6 +17,7 @@ const Header = () => {
 
   const loginLogoutHandler = () => {
     if (ctx.isLogedIn) {
+      localStorage.setItem('idToken', '')
       ctx.setIsLogedIn(false);
       ctx.setIdToken(null);
       ctx.setOrderList([]);

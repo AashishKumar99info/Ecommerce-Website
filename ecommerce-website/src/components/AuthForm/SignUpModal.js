@@ -44,14 +44,15 @@ const SignUpModal = () => {
       alert(data.error.message)
       console.log(data.error.message)
     }
-    else{
-      if(data.registered){
-          ctx.setIsLogedIn(true)
-          ctx.setSignInModalVisibility(false)
-          ctx.setIdToken(data.idToken);
-          console.log(data.idToken);
-      }else{
-          setIsSignIn(true);
+    else {
+      if (data.registered) {
+        localStorage.setItem('idToken', data.idToken);
+        ctx.setIsLogedIn(true)
+        ctx.setSignInModalVisibility(false)
+        ctx.setIdToken(data.idToken);
+        console.log(data.idToken);
+      } else {
+        setIsSignIn(true);
       }
     }
     console.log(data);
