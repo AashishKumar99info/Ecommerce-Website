@@ -13,24 +13,56 @@ import SignUpModal from "./components/AuthForm/SignUpModal";
 import ProfilePage from "./components/Pages/ProfilePage";
 import { useEffect } from "react";
 
+async function getUserCart(localId) {
+  const response = await fetch(`https://react-prep-c8bee-default-rtdb.firebaseio.com/cart/${localId}.json`);
+  const result = await response.json();
+  console.log(result)
+  return result;
+}
+
+async function updateUserCart(localId, data) {
+  const response = await fetch(`https://react-prep-c8bee-default-rtdb.firebaseio.com/cart/${localId}.json`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  const result = await response.json();
+  return result;
+}
+
 
 function App() {
-  const userIdToken = localStorage.getItem('idToken') ? localStorage.getItem('idToken') : '';
-  const userLogedIn = userIdToken === '' ? false : true;
+  const userIdToken = localStorage.getItem('idToken') ? localStorage.getItem('idToken') : null;
+  const userLogedIn = !!userIdToken;
+  const userLocalId = localStorage.getItem('userid') ? localStorage.getItem('userid') : null;
   const [cartOpen, setCartOpen] = useState(false);
   const [orderList, setOrderList] = useState([]);
   const [signInModalVisibility, setSignInModalVisibility] = useState(false);
   const [idToken, setIdToken] = useState(userIdToken);
   const [isLogedIn, setIsLogedIn] = useState(userLogedIn)
+  const [userid, setUserId] = useState(userLocalId)
   // const[loginStateTimer, setLoginStateTimer] = useState(isLogedIn) ;
-  useEffect(()=>{
-    if(isLogedIn){
-      setTimeout(()=>{
-        localStorage.setItem('idToken' , '')
-      },1*60*1000)
+  useEffect(() => {
+    if (isLogedIn) {
+      setTimeout(() => {
+        localStorage.setItem('idToken', '')
+      }, 1 * 60 * 1000)
       // return clearTimeout(timer);
     }
-  },[isLogedIn])
+  }, [isLogedIn])
+
+  if (userid && orderList.length !== 0) {
+    updateUserCart(userid, orderList)
+  }
+
+  useEffect(() => {
+    getUserCart(userid).then(data => { if (data) { setOrderList(data) } })
+  }, [userid])
+
+  console.log("effect running")
+
 
   const ctxObj = {
     cartOpen: cartOpen,
@@ -42,8 +74,9 @@ function App() {
     idToken: idToken,
     setIdToken: setIdToken,
     signInModalVisibility: signInModalVisibility,
-    setSignInModalVisibility: setSignInModalVisibility
-
+    setSignInModalVisibility: setSignInModalVisibility,
+    userid: userid,
+    setUserId: setUserId
   };
 
   return (

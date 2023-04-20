@@ -11,16 +11,20 @@ const Header = () => {
   const signIn = ctx.isLogedIn;
 
   let cartItemCount = 0;
-  orderlist.forEach(item => {
-    cartItemCount += item.quantity
-  })
+  if(signIn){
+    orderlist.forEach(item => {
+      cartItemCount += item.quantity
+    })
+  }
 
   const loginLogoutHandler = () => {
     if (ctx.isLogedIn) {
-      localStorage.setItem('idToken', '')
+      localStorage.removeItem('idToken')
+      localStorage.removeItem('userid')
       ctx.setIsLogedIn(false);
       ctx.setIdToken(null);
       ctx.setOrderList([]);
+      ctx.setUserId(null);
     } else {
       ctx.setSignInModalVisibility(true);
     }
