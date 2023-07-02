@@ -34,8 +34,8 @@ const ProductCard = (props) => {
 
   }
 
-  const CardItemClickHandler = ()=>{
-    navto(`/products/${id}/${ctx.idToken}`);
+  const CardItemClickHandler = () =>{
+    navto(`/products/${id}`);
   }
 
 
