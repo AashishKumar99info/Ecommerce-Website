@@ -13,7 +13,7 @@ const ProductCard = (props) => {
   const signIn = ctx.isLogedIn;
 
   const buttonClickHandler = () => {
-    if (signIn) {
+    if (true) {
       const n = orderList.length;
       for (let i = 0; i <= n; i++) {
         if (i < n && orderList[i].id === id) {
