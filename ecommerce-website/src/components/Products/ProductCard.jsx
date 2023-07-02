@@ -13,7 +13,7 @@ const ProductCard = (props) => {
   const signIn = ctx.isLogedIn;
 
   const buttonClickHandler = () => {
-    if (true) {
+    if (signIn) {
       const n = orderList.length;
       for (let i = 0; i <= n; i++) {
         if (i < n && orderList[i].id === id) {
@@ -35,11 +35,7 @@ const ProductCard = (props) => {
   }
 
   const CardItemClickHandler = ()=>{
-    if(ctx.isLogedIn){
-      navto(`/products/${id}/${ctx.idToken}`);
-    }else{
-      ctx.setSignInModalVisibility(true);
-    }
+    navto(`/products/${id}/${ctx.idToken}`);
   }
 
 
