@@ -14,7 +14,7 @@ const ProductDetails = () => {
     // const productList = ctx.productlist
     // console.log(ProductList)
     const product  = items.filter(item => item.id === id)[0]
-    // if(params.idToken !== ctx.idToken ) return <p> Page Not Found</p>
+    if(params.idToken !== ctx.idToken ) return <p> Page Not Found</p>
     console.log(params)
 
     const orderList = [...ctx.orderList];

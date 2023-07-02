@@ -35,7 +35,11 @@ const ProductCard = (props) => {
   }
 
   const CardItemClickHandler = () =>{
-    navto(`/products/${id}`);
+    if(ctx.isLogedIn){
+      navto(`/products/${id}/${ctx.idToken}`);
+    }else{
+      ctx.setSignInModalVisibility(true);
+    }
   }
 
 
