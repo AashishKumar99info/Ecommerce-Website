@@ -13,7 +13,7 @@ const HomeProduct = () => {
             This is a description of product 1. It is a very good product and
             will be useful for your needs.
           </Card.Text>
-          <Button variant="primary">Add to cart</Button>
+          {/* <Button variant="primary">Add to cart</Button> */}
         </Card.Body>
       </Card>
     </Col>
